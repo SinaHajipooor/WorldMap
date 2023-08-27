@@ -4,6 +4,7 @@ import Pricing from "./pages/Pricing";
 import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
+import Login from "./pages/Login";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path="product" element={<Product />} />
                     <Route path="pricing" element={<Pricing />} />
                     <Route path="app" element={<AppLayout />} />
+                    <Route path="/login" element={<Login />} />
                     {/* when we pass * as the path of the route , if the user enter any path in url that doesnt exist in our routes , then he will redirect into the element that we pass to this route  */}
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
