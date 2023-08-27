@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
+import CityList from "./components/CityList";
 
 function App() {
     return (
@@ -17,8 +18,8 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="app" element={<AppLayout />}>
                         {/* when we add the index property to a child route , it will become the default route that will render if none of the other child routes render  */}
-                        <Route index element={<p>default path inside app route</p>} />
-                        <Route path="cities" element={<p>List of cities</p>} />
+                        <Route index element={<CityList />} />
+                        <Route path="cities" element={<CityList />} />
                         <Route path="countries" element={<p>List of countries</p>} />
                         <Route path="form" element={<p>form</p>} />
                     </Route>
