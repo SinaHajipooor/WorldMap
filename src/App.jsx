@@ -6,8 +6,35 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
+import { useEffect, useState } from "react";
+
+// base url
+const URL = 'http://localhost:9000';
 
 function App() {
+    // ----------- state ------------
+    const [cities, setCities] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // ----------- lifecycle ------------
+    useEffect(function () {
+        async function fetchCities() {
+            try {
+                setIsLoading(true);
+                const response = await fetch(`${URL}/cities`);
+                const data = await response.json();
+                setCities(data)
+            } catch (err) {
+                alert('Couldent fetch all the cities')
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        fetchCities();
+    }, [])
+    // ----------- UI ------------
+
+
     return (
         <>
             <BrowserRouter>
@@ -18,8 +45,8 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="app" element={<AppLayout />}>
                         {/* when we add the index property to a child route , it will become the default route that will render if none of the other child routes render  */}
-                        <Route index element={<CityList />} />
-                        <Route path="cities" element={<CityList />} />
+                        <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
+                        <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
                         <Route path="countries" element={<p>List of countries</p>} />
                         <Route path="form" element={<p>form</p>} />
                     </Route>
