@@ -7,12 +7,13 @@ import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import { useEffect, useState } from "react";
+import CountryList from "./components/CountryList";
 
 // base url
 const URL = 'http://localhost:9000';
 
 function App() {
-    // ----------- state ------------
+    //     ----------- state ------------
     const [cities, setCities] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -47,7 +48,7 @@ function App() {
                         {/* when we add the index property to a child route , it will become the default route that will render if none of the other child routes render  */}
                         <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
                         <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
-                        <Route path="countries" element={<p>List of countries</p>} />
+                        <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading} />} />
                         <Route path="form" element={<p>form</p>} />
                     </Route>
                     <Route path="*" element={<PageNotFound />} />
