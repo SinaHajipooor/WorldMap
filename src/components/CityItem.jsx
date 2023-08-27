@@ -9,10 +9,12 @@ const formatDate = (date) => new Intl.DateTimeFormat('en', {
 
 function CityItem({ city }) {
     // destructure city obj
-    const { cityName, emoji, date, id } = city;
+    const { cityName, emoji, date, id, position } = city;
+
+    // UL
     return (
-        <li >
-            <Link className={styles.cityItem} to={`${id}`}>
+        <li>
+            <Link className={styles.cityItem} to={`${id}?lat=${position.lat}&lng=${position.lng}`}>
                 <span className={styles.emoji}>{emoji}</span>
                 <h3 className={styles.name}>{cityName}</h3>
                 <time className={styles.date}>({formatDate(date)})</time>
