@@ -50,7 +50,7 @@ function AuthProvider({ children }) {
 function useAuth() {
     const context = useContext(AuthContext);
     if (context === undefined) throw new Error('Failed to support the auth context');
-
+    return context;
 }
 
 export { AuthProvider, useAuth } 
