@@ -57,8 +57,22 @@ function CitiesProvider({ children }) {
             setIsLoading(false)
         }
     }
+    // delete city
+    async function deleteCity(id) {
+        try {
+            setIsLoading(true)
+            await fetch(`${BASE_URL}/cities/${id}`, {
+                method: 'DELETE',
+            });
+            setCities(cities => cities.filter(city => city.id !== id))
+        } catch (error) {
+            alert('Failed to delete city');
+        } finally {
+            setIsLoading(false)
+        }
+    }
     // assign the values 
-    return <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity }}>{children}</CitiesContext.Provider>
+    return <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity, deleteCity }}>{children}</CitiesContext.Provider>
 }
 // custom hook to use the cities context every where we need 
 function useCities() {

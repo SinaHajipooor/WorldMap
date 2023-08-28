@@ -12,10 +12,11 @@ function CityItem({ city }) {
     // destructure city obj
     const { cityName, emoji, date, id, position } = city;
     // get the current city from context
-    const { currentCity } = useCities();
+    const { currentCity, deleteCity } = useCities();
     // methods 
     function handleClick(e) {
         e.preventDefault();
+        deleteCity(id);
     }
     // UL
     return (
