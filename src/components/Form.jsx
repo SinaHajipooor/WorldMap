@@ -6,7 +6,10 @@ import styles from "./Form.module.css";
 import Button from "./Button";
 import BackButton from "./BackButton";
 import { useUrlPosition } from "../hooks/useUrlPosition";
+import Message from './Message'
+import Spinner from './Spinner'
 
+// helper method to get the coutries emoji
 export function convertToEmoji(countryCode) {
     const codePoints = countryCode
         .toUpperCase()
@@ -27,7 +30,7 @@ function Form() {
     const [notes, setNotes] = useState("");
     const [lat, lng] = useUrlPosition();
     const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false)
-
+    const [geoCodingError, setGeoCodingError] = useState('')
 
 
     // lifecycle
@@ -35,12 +38,16 @@ function Form() {
         async function fetchCityData() {
             try {
                 setIsLoadingGeoCoding(true);
+                setGeoCodingError('')
                 const response = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
                 const data = await response.json();
+
+                if (!data.countryCode) throw new Error("That doesnt seem to be a city. click some where else")
+
                 setCityName(data.city || data.locality || '');
                 setCountry(data.countryName);
             } catch (err) {
-                alert('Failed to fetch city data')
+                setGeoCodingError(err.message);
             } finally {
                 setIsLoadingGeoCoding(false);
             }
@@ -48,6 +55,11 @@ function Form() {
         fetchCityData();
     }, [lat, lng])
 
+    // loading ui 
+    if (isLoadingGeoCoding) return <Spinner />
+    // error ui 
+    if (geoCodingError) return <Message message={geoCodingError} />
+    // default ui
     return (
         <form className={styles.form}>
             <div className={styles.row}>
