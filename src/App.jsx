@@ -18,7 +18,6 @@ function App() {
     //     ----------- state ------------
     const [cities, setCities] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
     // ----------- lifecycle ------------
     useEffect(function () {
         async function fetchCities() {
