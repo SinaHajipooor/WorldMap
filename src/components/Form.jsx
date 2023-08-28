@@ -35,6 +35,7 @@ function Form() {
 
     // lifecycle
     useEffect(function () {
+        if (!lat && !lng) return;
         async function fetchCityData() {
             try {
                 setIsLoadingGeoCoding(true);
@@ -54,14 +55,20 @@ function Form() {
         }
         fetchCityData();
     }, [lat, lng])
-
+    // handle the submit event of the form
+    function handleSubmit(e) {
+        // not refresh
+        e.preventDefault();
+    }
     // loading ui 
     if (isLoadingGeoCoding) return <Spinner />
+    // not displaying the form if there isnt any lat or lng 
+    if (!lat && !lng) return <Message message='Start by clicking some where on the map' />
     // error ui 
     if (geoCodingError) return <Message message={geoCodingError} />
     // default ui
     return (
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.row}>
                 <label htmlFor="cityName">City name</label>
                 <input
