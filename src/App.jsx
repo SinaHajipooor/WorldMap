@@ -9,33 +9,14 @@ import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
 import City from "./components/City";
 import Form from './components/Form'
+import { CitiesProvider } from "./contexts/CitiesContext";
 
 // base url
 const URL = 'http://localhost:9000';
 
 function App() {
-    //     //     ----------- state ------------
-    //     const [cities, setCities] = useState([]);
-    //     const [isLoading, setIsLoading] = useState(false);
-    //     // ----------- lifecycle ------------
-    //     useEffect(function () {
-    //         async function fetchCities() {
-    //             try {
-    //                 setIsLoading(true);
-    //                 const response = await fetch(`${URL}/cities`);
-    //                 const data = await response.json();
-    //                 setCities(data)
-    //             } catch (err) {
-    //                 alert('Couldent fetch all the cities')
-    //             } finally {
-    //                 setIsLoading(false)
-    //             }
-    //         }
-    //         fetchCities();
-    //     }, [])
-    //     // ----------- UI ------------
     return (
-        <>
+        <CitiesProvider>
             <BrowserRouter>
                 <Routes>
                     <Route index element={<HomePage />} />
@@ -52,7 +33,7 @@ function App() {
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
-        </>
+        </CitiesProvider >
     )
 }
 

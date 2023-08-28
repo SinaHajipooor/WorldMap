@@ -23,4 +23,11 @@ function CitiesProvider({ children }) {
         }
         fetchCities();
     }, []);
+
+
+    // assign the values
+    return <CitiesContext.Provider value={{ cities, isLoading }}>{children}</CitiesContext.Provider>
 }
+
+
+export { CitiesProvider }
