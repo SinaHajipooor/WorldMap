@@ -25,7 +25,6 @@ export function convertToEmoji(countryCode) {
 // base url 
 const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
-
 function Form() {
     // states
     const [cityName, setCityName] = useState("");
@@ -37,7 +36,6 @@ function Form() {
     const [geoCodingError, setGeoCodingError] = useState('')
     const { createCity, isLoading } = useCities();
     const navigate = useNavigate()
-
     // lifecycle
     useEffect(function () {
         if (!lat && !lng) return;
@@ -91,12 +89,10 @@ function Form() {
                     value={cityName}
                 />
             </div>
-
             <div className={styles.row}>
                 <label htmlFor="date">When did you go to {cityName}?</label>
                 <DatePicker onChange={date => setDate(date)} selected={date} dateFormat='dd/MM/yyyy' />
             </div>
-
             <div className={styles.row}>
                 <label htmlFor="notes">Notes about your trip to {cityName}</label>
                 <textarea
@@ -105,13 +101,9 @@ function Form() {
                     value={notes}
                 />
             </div>
-
             <div className={styles.buttons}>
                 <Button type='primary'>Add</Button>
-
                 <BackButton />
-
-
             </div>
         </form>
     );

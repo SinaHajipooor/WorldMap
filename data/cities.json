@@ -71,6 +71,30 @@
         "lng": 40.46635901755316
       },
       "id": 98443200
+    },
+    {
+      "cityName": "Uncastillo",
+      "country": "Spain",
+      "emoji": "",
+      "date": "2023-08-28T16:04:41.986Z",
+      "notes": "test",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": 40.46635901755316
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Illiat",
+      "country": "France",
+      "emoji": "",
+      "date": "2023-08-28T16:04:52.429Z",
+      "notes": "slm",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": 40.46635901755316
+      },
+      "id": 98443202
     }
   ]
 }
