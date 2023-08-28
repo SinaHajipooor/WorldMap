@@ -5,20 +5,16 @@ import { useEffect, useState } from 'react';
 import { useCities } from '../contexts/CitiesContext';
 import { useGeolocation } from '../hooks/useGeolocation';
 import Button from '../components/Button'
+import { useUrlPosition } from '../hooks/useUrlPosition';
 
 
 function Map() {
     const [mapPosition, setMapPosition] = useState([40, 0])
     const { cities } = useCities();
-    // extract the query strings from the url 
-    // useSearchParams is just like useState hook and it returns an array that has the current search params and a function to update the search params   
-    const [searchparams, setSearchParams] = useSearchParams();
-    // we can access the actual quesry string by get method
-    const mapLat = searchparams.get('lat');
-    const mapLng = searchparams.get('lng');
     // get the navigate method
     const navigate = useNavigate();
-    const { isLoading: isLoadingPosition, position: geolocationPosition, getPosition } = useGeolocation()
+    const { isLoading: isLoadingPosition, position: geolocationPosition, getPosition } = useGeolocation();
+    const [mapLat, mapLng] = useUrlPosition();
 
     useEffect(function () {
         if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
