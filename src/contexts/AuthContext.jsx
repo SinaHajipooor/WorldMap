@@ -38,7 +38,9 @@ function AuthProvider({ children }) {
     }
 
 
-    function logout() { }
+    function logout() {
+        dispatch({ type: 'logout' })
+    }
 
 
     return <AuthContext.Provider value={{ user, login, isAuthenticated, logout }}>{children}</AuthContext.Provider>
@@ -50,3 +52,5 @@ function useAuth() {
     if (context === undefined) throw new Error('Failed to support the auth context');
 
 }
+
+export { AuthProvider, useAuth } 
