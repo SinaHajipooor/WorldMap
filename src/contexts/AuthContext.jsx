@@ -7,6 +7,18 @@ const initialState = {
     isAuthenticated: false,
 }
 
+function reducer(state, action) {
+    switch (action.type) {
+        case 'login':
+            return { ...state, user: action.payload, isAuthenticated: true }
+
+        case 'logout':
+            return { ...state, user: null, isAuthenticated: false }
+
+        default: throw new Error('unknown action')
+    }
+}
+
 
 function AuthProvider({ children }) {
 
@@ -19,7 +31,7 @@ function AuthProvider({ children }) {
     function logout() { }
 
 
-    return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{ user, login, isAuthenticated, logout }}>{children}</AuthContext.Provider>
 }
 
 
