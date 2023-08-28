@@ -21,9 +21,7 @@ function City() {
     useEffect(function () {
         getCity(id)
     }, [id])
-
     const { cityName, emoji, date, notes } = currentCity;
-
     if (isLoading) return <Spinner />
     return (
         <div className={styles.city}>
