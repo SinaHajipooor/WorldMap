@@ -1,10 +1,12 @@
-import CityItem from './CityItem';
 import styles from './CountryList.module.css'
 import Spinner from './Spinner';
 import Message from './Message'
 import CountryItem from './CountryItem'
+import { useCities } from '../contexts/CitiesContext';
 
-function CountryList({ cities, isLoading }) {
+function CountryList() {
+    // get data from context 
+    const { cities, isLoading } = useCities()
     // ------------- UI ---------------
     // get the countries of the cities ( here we check each city's country with another city's country and then just add the unique countries into the coutries array )
     const countries = cities.reduce((arr, city) => {

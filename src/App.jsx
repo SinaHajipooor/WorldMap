@@ -11,8 +11,7 @@ import City from "./components/City";
 import Form from './components/Form'
 import { CitiesProvider } from "./contexts/CitiesContext";
 
-// base url
-const URL = 'http://localhost:9000';
+
 
 function App() {
     return (
@@ -33,7 +32,7 @@ function App() {
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
-        </CitiesProvider >
+        </CitiesProvider>
     )
 }
 

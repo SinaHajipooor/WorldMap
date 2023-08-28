@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
-
+import { createContext, useContext, useEffect, useState } from "react";
+// initialize the context
 const CitiesContext = createContext();
-
+// states and logic of context
 function CitiesProvider({ children }) {
+    // states
     const [cities, setCities] = useState([]);
-    cconst[isLoading, setIsLoading] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(false);
     // fetch cities list 
     useEffect(function () {
         async function fetchCities() {
@@ -23,11 +23,16 @@ function CitiesProvider({ children }) {
         }
         fetchCities();
     }, []);
-
-
-    // assign the values
+    // assign the values 
     return <CitiesContext.Provider value={{ cities, isLoading }}>{children}</CitiesContext.Provider>
 }
+// custom hook to use the cities context every where we need 
+function useCities() {
+    const context = useContext(CitiesContext);
+    if (context === undefined) throw new Error('Failed to implement cities context');
+    return context;
+}
+export { CitiesProvider, useCities }
 
 
-export { CitiesProvider }
+
