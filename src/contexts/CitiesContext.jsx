@@ -17,6 +17,7 @@ function CitiesProvider({ children }) {
                 const response = await fetch(`${BASE_URL}/cities`);
                 const data = await response.json();
                 setCities(data);
+                console.log(data)
             } catch (error) {
                 alert('Failed to fetch all the cities');
             }
@@ -39,8 +40,25 @@ function CitiesProvider({ children }) {
             setIsLoading(false);
         }
     }
+    // create new city
+    async function createCity(newCity) {
+        try {
+            setIsLoading(true);
+            const response = await fetch(`${BASE_URL}/cities`, {
+                method: 'POST',
+                body: JSON.stringify(newCity),
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const data = await response.json()
+            setCities(cities => [...cities, data])
+        } catch (error) {
+            alert('Failed to create new city')
+        } finally {
+            setIsLoading(false)
+        }
+    }
     // assign the values 
-    return <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>{children}</CitiesContext.Provider>
+    return <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity }}>{children}</CitiesContext.Provider>
 }
 // custom hook to use the cities context every where we need 
 function useCities() {
