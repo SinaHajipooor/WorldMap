@@ -20,8 +20,10 @@ function City() {
     // to call the getCity method of context when the component has been mounted
     useEffect(function () {
         getCity(id)
-    }, [id])
+    }, [id, getCity])
+
     const { cityName, emoji, date, notes } = currentCity;
+
     if (isLoading) return <Spinner />
     return (
         <div className={styles.city}>
