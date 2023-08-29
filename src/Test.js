@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 
 function SlowComponent() {
     // If this is too slow on your maching, reduce the `length`
@@ -33,3 +33,9 @@ export default function Test() {
         </Counter>
     );
 }
+
+const SlowArchive = memo(function SlowArchive({ show }) {
+    return <div>
+        this is a heavy component
+    </div>
+})
