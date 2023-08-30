@@ -9,14 +9,6 @@ import CountryList from "./components/CountryList";
 import City from "./components/City";
 import Form from './components/Form'
 import SpinnerFullPage from './components/SpinnerFullPage'
-
-// import Product from "./pages/Product";
-// import Pricing from "./pages/Pricing";
-// import HomePage from "./pages/HomePage";
-// import PageNotFound from "./pages/PageNotFound";
-// import AppLayout from "./pages/AppLayout";
-// import Login from "./pages/Login";
-
 // lazy loading 
 const HomePage = lazy(() => import('./pages/Homepage'))
 const Product = lazy(() => import('./pages/Product'))
